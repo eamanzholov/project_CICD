@@ -9,6 +9,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Права на создание релиза
+      id-token: write  # Если нужно для аутентификации
+
     steps:
       - uses: actions/checkout@v2
         with:
@@ -20,11 +24,11 @@ jobs:
       - run: cmake --build . --target package
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v1
+        uses: actions/create-release@v2  # Обновлено до v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.run_number }}
+          tag_name: v${{ github.run_number }}  # Добавлен префикс "v"
           release_name: Release ${{ github.run_number }}
           draft: false
           prerelease: false

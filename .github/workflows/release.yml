@@ -14,7 +14,7 @@ jobs:
       id-token: write  # Если нужно для аутентификации
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
         with:
           submodules: true
       - run: sudo apt-get update && sudo apt-get install libboost-test-dev -y
@@ -24,7 +24,7 @@ jobs:
       - run: cmake --build . --target package
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v2  # Обновлено до v2
+        uses: actions/create-release@v1  # Обновлено до v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:

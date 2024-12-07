@@ -8,7 +8,7 @@ project(helloworld VERSION ${PROJECT_VERSION})
 configure_file(version.h.in version.h)
 
 # Добавление GoogleTest
-add_subdirectory(build/googletest)
+add_subdirectory(googletest)
 
 # Библиотека и приложение
 add_library(helloworld lib.cpp)
